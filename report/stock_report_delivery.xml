@@ -48,7 +48,7 @@
             </div>
         </xpath>
         <xpath expr="//div[@name='div_sched_date']" position="replace">
-            <div t-if="o.state" class="col-6" name="div_sched_date">
+            <div t-if="o.state" class="col-12" name="div_sched_date">
                 <strong>Fecha de envio:</strong>
                 <t t-if="o.state == 'done'">
                     <p t-field="o.date_done"/>
@@ -57,11 +57,13 @@
                     <p t-field="o.scheduled_date"/>
                </t>
             </div>
-            <div t-if="o.sale_id and o.sale_id.client_order_ref" class="col-6" name="div_sched_date">
-                <p t-field="o.sale_id.client_order_ref"/>
-            </div>
+            <!--<div t-if="o.sale_id and o.sale_id.client_order_ref" class="col-12">-->
+
         </xpath>
         <xpath expr="//div[@class='page']/div[3]" position="after">
+            <div  class="col-12">
+                <p t-field="o.sale_id.client_order_ref"/>
+            </div>
             <div class="col-12">
                 <strong>TODO MATERIAL ES CARGADO A PIE DE CAMION.</strong>
             </div>
