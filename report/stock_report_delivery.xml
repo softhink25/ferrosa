@@ -335,7 +335,7 @@
 
                         <td>
                             <span t-esc="move.product_id.display_name[move.product_id.display_name.find('] ')+2:]"/>
-                            
+
                         </td>
 
                         <td>
