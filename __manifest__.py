@@ -22,8 +22,9 @@
     #     'static/src/xml/pos.xml',
     # ],
     'data': [
-        'report/stock_report_delivery.xml',
         'views/external_template_view.xml',
+        'report/stock_report_delivery.xml',
+
         # 'views/sale_order_view.xml',
     ],
     'installable': True,
