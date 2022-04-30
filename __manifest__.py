@@ -24,7 +24,7 @@
     'data': [
         'views/external_template_view.xml',
         'report/stock_report_delivery.xml',
-
+        'views/res_users_view.xml',
         'views/sale_order_view.xml',
     ],
     'installable': True,

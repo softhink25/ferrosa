@@ -30,6 +30,13 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+
+    modifica_precio = fields.Boolean("Modifica precio", compute ="_usuario_modifica_precio")
+
+    def _usuario_modifica_precio(self):
+        for linea in self:
+            linea.modifica_precio = self.env.user.cambia_precio
+
     def getDomain(self):
         if self:
             arr_products = self.env["product.product"].search([], limit=5)
