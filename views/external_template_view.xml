@@ -30,15 +30,13 @@
 
 
     <template id="external_layout_standard_ferrosa" inherit_id="web.external_layout_standard" >
-        <!-- support for custom header -->
-        <!-- support for custom header -->
+
         <div t-attf-class="header o_company_#{company.id}_layout" position="replace">
             <t t-if="o._name == 'stock.picking'">
                 <t t-set="report_header_style">padding-top:1mm; padding-left:1mm; padding-right:1mm;max-height:10px;</t>
                 <style>
                      .header{max-height:10px !important;}
                  </style>
-                <!--t-att-style="report_header_style"-->
                 <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
                     <div class="col-12">
                         <h2  class="text-center">
@@ -72,13 +70,26 @@
             </t>
 
         </div>
-        <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" position="replace">
-            <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}"
-                 t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});padding:0px;"
-                 t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
 
-                <t t-out="0"/>
-            </div>
+        <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" position="replace">
+            <t t-if="o._name == 'stock.picking'">
+                <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}"
+                     t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});padding:0px;"
+                     t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+
+                    <t t-out="0"/>
+                </div>
+            </t>
+            <t t-else="else">
+                <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                    <div class="pt-5">
+
+                        <t t-call="web.address_layout"/>
+                    </div>
+                    <t t-out="0"/>
+                </div>
+            </t>
+
 
         </div>
 
