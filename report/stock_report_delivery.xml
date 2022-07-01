@@ -355,5 +355,45 @@
             </table>
 
         </xpath>
+        <xpath expr="//table[@name='stock_move_line_table']" position="replace">
+            <table class="table table-sm mt48" t-if="o.move_line_ids and o.state=='done'" name="stock_move_line_table">
+                <t t-set="has_serial_number" t-value="False"/>
+                <t t-set="has_serial_number" t-value="o.move_line_ids.mapped('lot_id')" groups="stock.group_lot_on_delivery_slip"/>
+                <thead>
+                    <tr>
+                        <th name="th_sm_product"><strong>Cantidad</strong></th>
+                        <th name="th_sm_ordered"><strong>Producto</strong></th>
+                        <th name="th_sm_quantity"><strong>Precio unitario</strong></th>
+                        <th name="th_sm_importe"><strong>Importe</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty)"/>
+                    <tr t-foreach="lines" t-as="move">
+                        <td class="text-center">
+                            <span t-field="move.product_uom_qty"/>
+                        </td>
+
+                        <td>
+                            <span t-esc="move.product_id.display_name[move.product_id.display_name.find('] ')+2:]"/>
+
+                        </td>
+
+                        <td>
+                            <span t-field="move.sale_line_id.price_unit"/>
+                        </td>
+                        <td>
+                            <span t-field="move.sale_line_id.price_total"/>
+                        </td>
+                    </tr>
+                    <tr t-if="o.sale_id">
+                        <td>TOTAL</td>
+                        <td></td>
+                        <td></td>
+                        <td><span t-field="o.sale_id.amount_total"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </xpath>
     </template>
 </odoo>
