@@ -16,7 +16,7 @@
                     <t t-else="else">
                         <t t-set="company" t-value="res_company"/>
                     </t>
-                </t>
+                </t> 
 
 
                 <t t-call="ferrosa.external_layout_ferrosa">
