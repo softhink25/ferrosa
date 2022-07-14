@@ -16,7 +16,7 @@
                     <t t-else="else">
                         <t t-set="company" t-value="res_company"/>
                     </t>
-                </t>  
+                </t>
 
 
                 <t t-call="ferrosa.external_layout_ferrosa">
@@ -308,9 +308,12 @@
 
         </xpath>
         <xpath expr="//div[@class='page']/div[2]" position="after">
-            <div  class="col-12">
-                <p t-field="o.sale_id.client_order_ref"/>
-            </div>
+            <t t-if="o.sale_id.client_order_ref">
+                <div  class="col-12">
+                    <p t-field="o.sale_id.client_order_ref"/>
+                </div>
+            </t>
+
             <div class="col-12">
                 <strong>MATERIAL DESCARGADO A PIE DE CAMIÓN.</strong>
             </div>
