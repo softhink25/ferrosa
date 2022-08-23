@@ -17,8 +17,9 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         for order in self:
+            porcentaje = (order.company_id.margen_minimo/100)
             for linea in order.order_line:
-                costo = linea.product_id.standard_price + (linea.product_id.standard_price * (.05));
+                costo = linea.product_id.standard_price + (linea.product_id.standard_price * (porcentaje));
                 if linea.price_unit < costo:
                     raise ValidationError(_(
                         "Actualice el precio de venta del producto %(producto)s, no cumple con el margen necesario.",

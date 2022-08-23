@@ -9,7 +9,7 @@
     'license': 'AGPL-3',
     'category': 'Point of sale',
     'summary': 'Pago de servicios',
-    'depends': ['point_of_sale'],
+    'depends': ['point_of_sale', 'sale'],
     'assets': {
         'point_of_sale.assets': [
             'ferrosa/static/src/js/**/*',
@@ -26,6 +26,7 @@
         'report/stock_report_delivery.xml',
         'views/res_users_view.xml',
         'views/sale_order_view.xml',
+        'views/res_config_settings_views.xml',
     ],
     'installable': True,
     'application': True,
